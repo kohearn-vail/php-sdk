@@ -28,8 +28,6 @@
  */
 
 namespace OpenAPI\Client\Model;
-
-use \ArrayAccess;
 use \OpenAPI\Client\ObjectSerializer;
 
 /**
@@ -58,7 +56,6 @@ class Enqueue extends PerclCommand
       * @var string[]
       */
     protected static $openAPITypes = [
-        'command' => 'string',
         'action_url' => 'string',
         'notification_url' => 'string',
         'queue_id' => 'string',
@@ -71,7 +68,6 @@ class Enqueue extends PerclCommand
       * @var string[]
       */
     protected static $openAPIFormats = [
-        'command' => null,
         'action_url' => null,
         'notification_url' => null,
         'queue_id' => null,
@@ -85,7 +81,7 @@ class Enqueue extends PerclCommand
      */
     public static function openAPITypes()
     {
-        return self::$openAPITypes;
+        return self::$openAPITypes + parent::openAPITypes();
     }
 
     /**
@@ -95,7 +91,7 @@ class Enqueue extends PerclCommand
      */
     public static function openAPIFormats()
     {
-        return self::$openAPIFormats;
+        return self::$openAPIFormats + parent::openAPIFormats();
     }
 
     /**
@@ -105,7 +101,6 @@ class Enqueue extends PerclCommand
      * @var string[]
      */
     protected static $attributeMap = [
-        'command' => 'command',
         'action_url' => 'actionUrl',
         'notification_url' => 'notificationUrl',
         'queue_id' => 'queueId',
@@ -118,7 +113,6 @@ class Enqueue extends PerclCommand
      * @var string[]
      */
     protected static $setters = [
-        'command' => 'setCommand',
         'action_url' => 'setActionUrl',
         'notification_url' => 'setNotificationUrl',
         'queue_id' => 'setQueueId',
@@ -131,7 +125,6 @@ class Enqueue extends PerclCommand
      * @var string[]
      */
     protected static $getters = [
-        'command' => 'getCommand',
         'action_url' => 'getActionUrl',
         'notification_url' => 'getNotificationUrl',
         'queue_id' => 'getQueueId',
@@ -146,7 +139,7 @@ class Enqueue extends PerclCommand
      */
     public static function attributeMap()
     {
-        return self::$attributeMap;
+        return parent::attributeMap() + self::$attributeMap;
     }
 
     /**
@@ -156,7 +149,7 @@ class Enqueue extends PerclCommand
      */
     public static function setters()
     {
-        return self::$setters;
+        return parent::setters() + self::$setters;
     }
 
     /**
@@ -166,7 +159,7 @@ class Enqueue extends PerclCommand
      */
     public static function getters()
     {
-        return self::$getters;
+        return parent::getters() + self::$getters;
     }
 
     /**
@@ -183,12 +176,6 @@ class Enqueue extends PerclCommand
 
     
 
-    /**
-     * Associative array for storing property values
-     *
-     * @var mixed[]
-     */
-    protected $container = [];
 
     /**
      * Constructor
@@ -198,7 +185,8 @@ class Enqueue extends PerclCommand
      */
     public function __construct(array $data = null)
     {
-        $this->container['command'] = isset($data['command']) ? $data['command'] : null;
+        parent::__construct($data);
+
         $this->container['action_url'] = isset($data['action_url']) ? $data['action_url'] : null;
         $this->container['notification_url'] = isset($data['notification_url']) ? $data['notification_url'] : null;
         $this->container['queue_id'] = isset($data['queue_id']) ? $data['queue_id'] : null;
@@ -212,7 +200,7 @@ class Enqueue extends PerclCommand
      */
     public function listInvalidProperties()
     {
-        $invalidProperties = [];
+        $invalidProperties = parent::listInvalidProperties();
 
         if ($this->container['action_url'] === null) {
             $invalidProperties[] = "'action_url' can't be null";
@@ -237,30 +225,6 @@ class Enqueue extends PerclCommand
         return count($this->listInvalidProperties()) === 0;
     }
 
-
-    /**
-     * Gets command
-     *
-     * @return string|null
-     */
-    public function getCommand()
-    {
-        return $this->container['command'];
-    }
-
-    /**
-     * Sets command
-     *
-     * @param string|null $command command
-     *
-     * @return $this
-     */
-    public function setCommand($command)
-    {
-        $this->container['command'] = $command;
-
-        return $this;
-    }
 
     /**
      * Gets action_url

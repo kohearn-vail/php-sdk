@@ -28,8 +28,6 @@
  */
 
 namespace OpenAPI\Client\Model;
-
-use \ArrayAccess;
 use \OpenAPI\Client\ObjectSerializer;
 
 /**
@@ -58,7 +56,6 @@ class RemoveFromConference extends PerclCommand
       * @var string[]
       */
     protected static $openAPITypes = [
-        'command' => 'string',
         'call_id' => 'string'
     ];
 
@@ -68,7 +65,6 @@ class RemoveFromConference extends PerclCommand
       * @var string[]
       */
     protected static $openAPIFormats = [
-        'command' => null,
         'call_id' => null
     ];
 
@@ -79,7 +75,7 @@ class RemoveFromConference extends PerclCommand
      */
     public static function openAPITypes()
     {
-        return self::$openAPITypes;
+        return self::$openAPITypes + parent::openAPITypes();
     }
 
     /**
@@ -89,7 +85,7 @@ class RemoveFromConference extends PerclCommand
      */
     public static function openAPIFormats()
     {
-        return self::$openAPIFormats;
+        return self::$openAPIFormats + parent::openAPIFormats();
     }
 
     /**
@@ -99,7 +95,6 @@ class RemoveFromConference extends PerclCommand
      * @var string[]
      */
     protected static $attributeMap = [
-        'command' => 'command',
         'call_id' => 'callId'
     ];
 
@@ -109,7 +104,6 @@ class RemoveFromConference extends PerclCommand
      * @var string[]
      */
     protected static $setters = [
-        'command' => 'setCommand',
         'call_id' => 'setCallId'
     ];
 
@@ -119,7 +113,6 @@ class RemoveFromConference extends PerclCommand
      * @var string[]
      */
     protected static $getters = [
-        'command' => 'getCommand',
         'call_id' => 'getCallId'
     ];
 
@@ -131,7 +124,7 @@ class RemoveFromConference extends PerclCommand
      */
     public static function attributeMap()
     {
-        return self::$attributeMap;
+        return parent::attributeMap() + self::$attributeMap;
     }
 
     /**
@@ -141,7 +134,7 @@ class RemoveFromConference extends PerclCommand
      */
     public static function setters()
     {
-        return self::$setters;
+        return parent::setters() + self::$setters;
     }
 
     /**
@@ -151,7 +144,7 @@ class RemoveFromConference extends PerclCommand
      */
     public static function getters()
     {
-        return self::$getters;
+        return parent::getters() + self::$getters;
     }
 
     /**
@@ -168,12 +161,6 @@ class RemoveFromConference extends PerclCommand
 
     
 
-    /**
-     * Associative array for storing property values
-     *
-     * @var mixed[]
-     */
-    protected $container = [];
 
     /**
      * Constructor
@@ -183,7 +170,8 @@ class RemoveFromConference extends PerclCommand
      */
     public function __construct(array $data = null)
     {
-        $this->container['command'] = isset($data['command']) ? $data['command'] : null;
+        parent::__construct($data);
+
         $this->container['call_id'] = isset($data['call_id']) ? $data['call_id'] : null;
     }
 
@@ -194,7 +182,7 @@ class RemoveFromConference extends PerclCommand
      */
     public function listInvalidProperties()
     {
-        $invalidProperties = [];
+        $invalidProperties = parent::listInvalidProperties();
 
         if ($this->container['call_id'] === null) {
             $invalidProperties[] = "'call_id' can't be null";
@@ -213,30 +201,6 @@ class RemoveFromConference extends PerclCommand
         return count($this->listInvalidProperties()) === 0;
     }
 
-
-    /**
-     * Gets command
-     *
-     * @return string|null
-     */
-    public function getCommand()
-    {
-        return $this->container['command'];
-    }
-
-    /**
-     * Sets command
-     *
-     * @param string|null $command command
-     *
-     * @return $this
-     */
-    public function setCommand($command)
-    {
-        $this->container['command'] = $command;
-
-        return $this;
-    }
 
     /**
      * Gets call_id

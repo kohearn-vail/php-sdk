@@ -28,8 +28,6 @@
  */
 
 namespace OpenAPI\Client\Model;
-
-use \ArrayAccess;
 use \OpenAPI\Client\ObjectSerializer;
 
 /**
@@ -58,7 +56,6 @@ class Play extends PerclCommand
       * @var string[]
       */
     protected static $openAPITypes = [
-        'command' => 'string',
         'file' => 'string',
         'loop' => 'int',
         'conference_id' => 'string',
@@ -71,7 +68,6 @@ class Play extends PerclCommand
       * @var string[]
       */
     protected static $openAPIFormats = [
-        'command' => null,
         'file' => null,
         'loop' => null,
         'conference_id' => null,
@@ -85,7 +81,7 @@ class Play extends PerclCommand
      */
     public static function openAPITypes()
     {
-        return self::$openAPITypes;
+        return self::$openAPITypes + parent::openAPITypes();
     }
 
     /**
@@ -95,7 +91,7 @@ class Play extends PerclCommand
      */
     public static function openAPIFormats()
     {
-        return self::$openAPIFormats;
+        return self::$openAPIFormats + parent::openAPIFormats();
     }
 
     /**
@@ -105,7 +101,6 @@ class Play extends PerclCommand
      * @var string[]
      */
     protected static $attributeMap = [
-        'command' => 'command',
         'file' => 'file',
         'loop' => 'loop',
         'conference_id' => 'conferenceId',
@@ -118,7 +113,6 @@ class Play extends PerclCommand
      * @var string[]
      */
     protected static $setters = [
-        'command' => 'setCommand',
         'file' => 'setFile',
         'loop' => 'setLoop',
         'conference_id' => 'setConferenceId',
@@ -131,7 +125,6 @@ class Play extends PerclCommand
      * @var string[]
      */
     protected static $getters = [
-        'command' => 'getCommand',
         'file' => 'getFile',
         'loop' => 'getLoop',
         'conference_id' => 'getConferenceId',
@@ -146,7 +139,7 @@ class Play extends PerclCommand
      */
     public static function attributeMap()
     {
-        return self::$attributeMap;
+        return parent::attributeMap() + self::$attributeMap;
     }
 
     /**
@@ -156,7 +149,7 @@ class Play extends PerclCommand
      */
     public static function setters()
     {
-        return self::$setters;
+        return parent::setters() + self::$setters;
     }
 
     /**
@@ -166,7 +159,7 @@ class Play extends PerclCommand
      */
     public static function getters()
     {
-        return self::$getters;
+        return parent::getters() + self::$getters;
     }
 
     /**
@@ -183,12 +176,6 @@ class Play extends PerclCommand
 
     
 
-    /**
-     * Associative array for storing property values
-     *
-     * @var mixed[]
-     */
-    protected $container = [];
 
     /**
      * Constructor
@@ -198,7 +185,8 @@ class Play extends PerclCommand
      */
     public function __construct(array $data = null)
     {
-        $this->container['command'] = isset($data['command']) ? $data['command'] : null;
+        parent::__construct($data);
+
         $this->container['file'] = isset($data['file']) ? $data['file'] : null;
         $this->container['loop'] = isset($data['loop']) ? $data['loop'] : null;
         $this->container['conference_id'] = isset($data['conference_id']) ? $data['conference_id'] : null;
@@ -212,7 +200,7 @@ class Play extends PerclCommand
      */
     public function listInvalidProperties()
     {
-        $invalidProperties = [];
+        $invalidProperties = parent::listInvalidProperties();
 
         if ($this->container['file'] === null) {
             $invalidProperties[] = "'file' can't be null";
@@ -231,30 +219,6 @@ class Play extends PerclCommand
         return count($this->listInvalidProperties()) === 0;
     }
 
-
-    /**
-     * Gets command
-     *
-     * @return string|null
-     */
-    public function getCommand()
-    {
-        return $this->container['command'];
-    }
-
-    /**
-     * Sets command
-     *
-     * @param string|null $command command
-     *
-     * @return $this
-     */
-    public function setCommand($command)
-    {
-        $this->container['command'] = $command;
-
-        return $this;
-    }
 
     /**
      * Gets file

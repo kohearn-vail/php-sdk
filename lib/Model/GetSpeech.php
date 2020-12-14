@@ -28,8 +28,6 @@
  */
 
 namespace OpenAPI\Client\Model;
-
-use \ArrayAccess;
 use \OpenAPI\Client\ObjectSerializer;
 
 /**
@@ -58,7 +56,6 @@ class GetSpeech extends PerclCommand
       * @var string[]
       */
     protected static $openAPITypes = [
-        'command' => 'string',
         'action_url' => 'string',
         'grammar_type' => 'int',
         'grammar_file' => 'string',
@@ -80,7 +77,6 @@ class GetSpeech extends PerclCommand
       * @var string[]
       */
     protected static $openAPIFormats = [
-        'command' => null,
         'action_url' => null,
         'grammar_type' => null,
         'grammar_file' => null,
@@ -103,7 +99,7 @@ class GetSpeech extends PerclCommand
      */
     public static function openAPITypes()
     {
-        return self::$openAPITypes;
+        return self::$openAPITypes + parent::openAPITypes();
     }
 
     /**
@@ -113,7 +109,7 @@ class GetSpeech extends PerclCommand
      */
     public static function openAPIFormats()
     {
-        return self::$openAPIFormats;
+        return self::$openAPIFormats + parent::openAPIFormats();
     }
 
     /**
@@ -123,7 +119,6 @@ class GetSpeech extends PerclCommand
      * @var string[]
      */
     protected static $attributeMap = [
-        'command' => 'command',
         'action_url' => 'actionUrl',
         'grammar_type' => 'grammarType',
         'grammar_file' => 'grammarFile',
@@ -145,7 +140,6 @@ class GetSpeech extends PerclCommand
      * @var string[]
      */
     protected static $setters = [
-        'command' => 'setCommand',
         'action_url' => 'setActionUrl',
         'grammar_type' => 'setGrammarType',
         'grammar_file' => 'setGrammarFile',
@@ -167,7 +161,6 @@ class GetSpeech extends PerclCommand
      * @var string[]
      */
     protected static $getters = [
-        'command' => 'getCommand',
         'action_url' => 'getActionUrl',
         'grammar_type' => 'getGrammarType',
         'grammar_file' => 'getGrammarFile',
@@ -191,7 +184,7 @@ class GetSpeech extends PerclCommand
      */
     public static function attributeMap()
     {
-        return self::$attributeMap;
+        return parent::attributeMap() + self::$attributeMap;
     }
 
     /**
@@ -201,7 +194,7 @@ class GetSpeech extends PerclCommand
      */
     public static function setters()
     {
-        return self::$setters;
+        return parent::setters() + self::$setters;
     }
 
     /**
@@ -211,7 +204,7 @@ class GetSpeech extends PerclCommand
      */
     public static function getters()
     {
-        return self::$getters;
+        return parent::getters() + self::$getters;
     }
 
     /**
@@ -228,12 +221,6 @@ class GetSpeech extends PerclCommand
 
     
 
-    /**
-     * Associative array for storing property values
-     *
-     * @var mixed[]
-     */
-    protected $container = [];
 
     /**
      * Constructor
@@ -243,7 +230,8 @@ class GetSpeech extends PerclCommand
      */
     public function __construct(array $data = null)
     {
-        $this->container['command'] = isset($data['command']) ? $data['command'] : null;
+        parent::__construct($data);
+
         $this->container['action_url'] = isset($data['action_url']) ? $data['action_url'] : null;
         $this->container['grammar_type'] = isset($data['grammar_type']) ? $data['grammar_type'] : null;
         $this->container['grammar_file'] = isset($data['grammar_file']) ? $data['grammar_file'] : null;
@@ -266,7 +254,7 @@ class GetSpeech extends PerclCommand
      */
     public function listInvalidProperties()
     {
-        $invalidProperties = [];
+        $invalidProperties = parent::listInvalidProperties();
 
         if ($this->container['action_url'] === null) {
             $invalidProperties[] = "'action_url' can't be null";
@@ -288,30 +276,6 @@ class GetSpeech extends PerclCommand
         return count($this->listInvalidProperties()) === 0;
     }
 
-
-    /**
-     * Gets command
-     *
-     * @return string|null
-     */
-    public function getCommand()
-    {
-        return $this->container['command'];
-    }
-
-    /**
-     * Sets command
-     *
-     * @param string|null $command command
-     *
-     * @return $this
-     */
-    public function setCommand($command)
-    {
-        $this->container['command'] = $command;
-
-        return $this;
-    }
 
     /**
      * Gets action_url

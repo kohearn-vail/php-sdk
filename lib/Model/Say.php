@@ -28,8 +28,6 @@
  */
 
 namespace OpenAPI\Client\Model;
-
-use \ArrayAccess;
 use \OpenAPI\Client\ObjectSerializer;
 
 /**
@@ -58,7 +56,6 @@ class Say extends PerclCommand
       * @var string[]
       */
     protected static $openAPITypes = [
-        'command' => 'string',
         'text' => 'string',
         'language' => 'string',
         'loop' => 'int',
@@ -72,7 +69,6 @@ class Say extends PerclCommand
       * @var string[]
       */
     protected static $openAPIFormats = [
-        'command' => null,
         'text' => null,
         'language' => null,
         'loop' => null,
@@ -87,7 +83,7 @@ class Say extends PerclCommand
      */
     public static function openAPITypes()
     {
-        return self::$openAPITypes;
+        return self::$openAPITypes + parent::openAPITypes();
     }
 
     /**
@@ -97,7 +93,7 @@ class Say extends PerclCommand
      */
     public static function openAPIFormats()
     {
-        return self::$openAPIFormats;
+        return self::$openAPIFormats + parent::openAPIFormats();
     }
 
     /**
@@ -107,7 +103,6 @@ class Say extends PerclCommand
      * @var string[]
      */
     protected static $attributeMap = [
-        'command' => 'command',
         'text' => 'text',
         'language' => 'language',
         'loop' => 'loop',
@@ -121,7 +116,6 @@ class Say extends PerclCommand
      * @var string[]
      */
     protected static $setters = [
-        'command' => 'setCommand',
         'text' => 'setText',
         'language' => 'setLanguage',
         'loop' => 'setLoop',
@@ -135,7 +129,6 @@ class Say extends PerclCommand
      * @var string[]
      */
     protected static $getters = [
-        'command' => 'getCommand',
         'text' => 'getText',
         'language' => 'getLanguage',
         'loop' => 'getLoop',
@@ -151,7 +144,7 @@ class Say extends PerclCommand
      */
     public static function attributeMap()
     {
-        return self::$attributeMap;
+        return parent::attributeMap() + self::$attributeMap;
     }
 
     /**
@@ -161,7 +154,7 @@ class Say extends PerclCommand
      */
     public static function setters()
     {
-        return self::$setters;
+        return parent::setters() + self::$setters;
     }
 
     /**
@@ -171,7 +164,7 @@ class Say extends PerclCommand
      */
     public static function getters()
     {
-        return self::$getters;
+        return parent::getters() + self::$getters;
     }
 
     /**
@@ -188,12 +181,6 @@ class Say extends PerclCommand
 
     
 
-    /**
-     * Associative array for storing property values
-     *
-     * @var mixed[]
-     */
-    protected $container = [];
 
     /**
      * Constructor
@@ -203,7 +190,8 @@ class Say extends PerclCommand
      */
     public function __construct(array $data = null)
     {
-        $this->container['command'] = isset($data['command']) ? $data['command'] : null;
+        parent::__construct($data);
+
         $this->container['text'] = isset($data['text']) ? $data['text'] : null;
         $this->container['language'] = isset($data['language']) ? $data['language'] : null;
         $this->container['loop'] = isset($data['loop']) ? $data['loop'] : null;
@@ -218,7 +206,7 @@ class Say extends PerclCommand
      */
     public function listInvalidProperties()
     {
-        $invalidProperties = [];
+        $invalidProperties = parent::listInvalidProperties();
 
         if ($this->container['text'] === null) {
             $invalidProperties[] = "'text' can't be null";
@@ -237,30 +225,6 @@ class Say extends PerclCommand
         return count($this->listInvalidProperties()) === 0;
     }
 
-
-    /**
-     * Gets command
-     *
-     * @return string|null
-     */
-    public function getCommand()
-    {
-        return $this->container['command'];
-    }
-
-    /**
-     * Sets command
-     *
-     * @param string|null $command command
-     *
-     * @return $this
-     */
-    public function setCommand($command)
-    {
-        $this->container['command'] = $command;
-
-        return $this;
-    }
 
     /**
      * Gets text

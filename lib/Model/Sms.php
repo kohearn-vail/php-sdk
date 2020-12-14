@@ -28,8 +28,6 @@
  */
 
 namespace OpenAPI\Client\Model;
-
-use \ArrayAccess;
 use \OpenAPI\Client\ObjectSerializer;
 
 /**
@@ -58,7 +56,6 @@ class Sms extends PerclCommand
       * @var string[]
       */
     protected static $openAPITypes = [
-        'command' => 'string',
         'to' => 'string',
         'from' => 'string',
         'text' => 'string',
@@ -71,7 +68,6 @@ class Sms extends PerclCommand
       * @var string[]
       */
     protected static $openAPIFormats = [
-        'command' => null,
         'to' => null,
         'from' => null,
         'text' => null,
@@ -85,7 +81,7 @@ class Sms extends PerclCommand
      */
     public static function openAPITypes()
     {
-        return self::$openAPITypes;
+        return self::$openAPITypes + parent::openAPITypes();
     }
 
     /**
@@ -95,7 +91,7 @@ class Sms extends PerclCommand
      */
     public static function openAPIFormats()
     {
-        return self::$openAPIFormats;
+        return self::$openAPIFormats + parent::openAPIFormats();
     }
 
     /**
@@ -105,7 +101,6 @@ class Sms extends PerclCommand
      * @var string[]
      */
     protected static $attributeMap = [
-        'command' => 'command',
         'to' => 'to',
         'from' => 'from',
         'text' => 'text',
@@ -118,7 +113,6 @@ class Sms extends PerclCommand
      * @var string[]
      */
     protected static $setters = [
-        'command' => 'setCommand',
         'to' => 'setTo',
         'from' => 'setFrom',
         'text' => 'setText',
@@ -131,7 +125,6 @@ class Sms extends PerclCommand
      * @var string[]
      */
     protected static $getters = [
-        'command' => 'getCommand',
         'to' => 'getTo',
         'from' => 'getFrom',
         'text' => 'getText',
@@ -146,7 +139,7 @@ class Sms extends PerclCommand
      */
     public static function attributeMap()
     {
-        return self::$attributeMap;
+        return parent::attributeMap() + self::$attributeMap;
     }
 
     /**
@@ -156,7 +149,7 @@ class Sms extends PerclCommand
      */
     public static function setters()
     {
-        return self::$setters;
+        return parent::setters() + self::$setters;
     }
 
     /**
@@ -166,7 +159,7 @@ class Sms extends PerclCommand
      */
     public static function getters()
     {
-        return self::$getters;
+        return parent::getters() + self::$getters;
     }
 
     /**
@@ -183,12 +176,6 @@ class Sms extends PerclCommand
 
     
 
-    /**
-     * Associative array for storing property values
-     *
-     * @var mixed[]
-     */
-    protected $container = [];
 
     /**
      * Constructor
@@ -198,7 +185,8 @@ class Sms extends PerclCommand
      */
     public function __construct(array $data = null)
     {
-        $this->container['command'] = isset($data['command']) ? $data['command'] : null;
+        parent::__construct($data);
+
         $this->container['to'] = isset($data['to']) ? $data['to'] : null;
         $this->container['from'] = isset($data['from']) ? $data['from'] : null;
         $this->container['text'] = isset($data['text']) ? $data['text'] : null;
@@ -212,7 +200,7 @@ class Sms extends PerclCommand
      */
     public function listInvalidProperties()
     {
-        $invalidProperties = [];
+        $invalidProperties = parent::listInvalidProperties();
 
         if ($this->container['to'] === null) {
             $invalidProperties[] = "'to' can't be null";
@@ -237,30 +225,6 @@ class Sms extends PerclCommand
         return count($this->listInvalidProperties()) === 0;
     }
 
-
-    /**
-     * Gets command
-     *
-     * @return string|null
-     */
-    public function getCommand()
-    {
-        return $this->container['command'];
-    }
-
-    /**
-     * Sets command
-     *
-     * @param string|null $command command
-     *
-     * @return $this
-     */
-    public function setCommand($command)
-    {
-        $this->container['command'] = $command;
-
-        return $this;
-    }
 
     /**
      * Gets to

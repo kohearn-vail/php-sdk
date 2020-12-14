@@ -28,8 +28,6 @@
  */
 
 namespace OpenAPI\Client\Model;
-
-use \ArrayAccess;
 use \OpenAPI\Client\ObjectSerializer;
 
 /**
@@ -58,7 +56,6 @@ class OutDial extends PerclCommand
       * @var string[]
       */
     protected static $openAPITypes = [
-        'command' => 'string',
         'action_url' => 'string',
         'call_connect_url' => 'string',
         'calling_number' => 'float',
@@ -77,7 +74,6 @@ class OutDial extends PerclCommand
       * @var string[]
       */
     protected static $openAPIFormats = [
-        'command' => null,
         'action_url' => null,
         'call_connect_url' => null,
         'calling_number' => null,
@@ -97,7 +93,7 @@ class OutDial extends PerclCommand
      */
     public static function openAPITypes()
     {
-        return self::$openAPITypes;
+        return self::$openAPITypes + parent::openAPITypes();
     }
 
     /**
@@ -107,7 +103,7 @@ class OutDial extends PerclCommand
      */
     public static function openAPIFormats()
     {
-        return self::$openAPIFormats;
+        return self::$openAPIFormats + parent::openAPIFormats();
     }
 
     /**
@@ -117,7 +113,6 @@ class OutDial extends PerclCommand
      * @var string[]
      */
     protected static $attributeMap = [
-        'command' => 'command',
         'action_url' => 'actionUrl',
         'call_connect_url' => 'callConnectUrl',
         'calling_number' => 'callingNumber',
@@ -136,7 +131,6 @@ class OutDial extends PerclCommand
      * @var string[]
      */
     protected static $setters = [
-        'command' => 'setCommand',
         'action_url' => 'setActionUrl',
         'call_connect_url' => 'setCallConnectUrl',
         'calling_number' => 'setCallingNumber',
@@ -155,7 +149,6 @@ class OutDial extends PerclCommand
      * @var string[]
      */
     protected static $getters = [
-        'command' => 'getCommand',
         'action_url' => 'getActionUrl',
         'call_connect_url' => 'getCallConnectUrl',
         'calling_number' => 'getCallingNumber',
@@ -176,7 +169,7 @@ class OutDial extends PerclCommand
      */
     public static function attributeMap()
     {
-        return self::$attributeMap;
+        return parent::attributeMap() + self::$attributeMap;
     }
 
     /**
@@ -186,7 +179,7 @@ class OutDial extends PerclCommand
      */
     public static function setters()
     {
-        return self::$setters;
+        return parent::setters() + self::$setters;
     }
 
     /**
@@ -196,7 +189,7 @@ class OutDial extends PerclCommand
      */
     public static function getters()
     {
-        return self::$getters;
+        return parent::getters() + self::$getters;
     }
 
     /**
@@ -213,12 +206,6 @@ class OutDial extends PerclCommand
 
     
 
-    /**
-     * Associative array for storing property values
-     *
-     * @var mixed[]
-     */
-    protected $container = [];
 
     /**
      * Constructor
@@ -228,7 +215,8 @@ class OutDial extends PerclCommand
      */
     public function __construct(array $data = null)
     {
-        $this->container['command'] = isset($data['command']) ? $data['command'] : null;
+        parent::__construct($data);
+
         $this->container['action_url'] = isset($data['action_url']) ? $data['action_url'] : null;
         $this->container['call_connect_url'] = isset($data['call_connect_url']) ? $data['call_connect_url'] : null;
         $this->container['calling_number'] = isset($data['calling_number']) ? $data['calling_number'] : null;
@@ -248,7 +236,7 @@ class OutDial extends PerclCommand
      */
     public function listInvalidProperties()
     {
-        $invalidProperties = [];
+        $invalidProperties = parent::listInvalidProperties();
 
         if ($this->container['action_url'] === null) {
             $invalidProperties[] = "'action_url' can't be null";
@@ -276,30 +264,6 @@ class OutDial extends PerclCommand
         return count($this->listInvalidProperties()) === 0;
     }
 
-
-    /**
-     * Gets command
-     *
-     * @return string|null
-     */
-    public function getCommand()
-    {
-        return $this->container['command'];
-    }
-
-    /**
-     * Sets command
-     *
-     * @param string|null $command command
-     *
-     * @return $this
-     */
-    public function setCommand($command)
-    {
-        $this->container['command'] = $command;
-
-        return $this;
-    }
 
     /**
      * Gets action_url

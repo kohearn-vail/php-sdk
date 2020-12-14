@@ -28,8 +28,6 @@
  */
 
 namespace OpenAPI\Client\Model;
-
-use \ArrayAccess;
 use \OpenAPI\Client\ObjectSerializer;
 
 /**
@@ -58,7 +56,6 @@ class GetDigits extends PerclCommand
       * @var string[]
       */
     protected static $openAPITypes = [
-        'command' => 'string',
         'action_url' => 'string',
         'digit_timeout_ms' => 'int',
         'finish_on_key' => 'string',
@@ -76,7 +73,6 @@ class GetDigits extends PerclCommand
       * @var string[]
       */
     protected static $openAPIFormats = [
-        'command' => null,
         'action_url' => null,
         'digit_timeout_ms' => null,
         'finish_on_key' => null,
@@ -95,7 +91,7 @@ class GetDigits extends PerclCommand
      */
     public static function openAPITypes()
     {
-        return self::$openAPITypes;
+        return self::$openAPITypes + parent::openAPITypes();
     }
 
     /**
@@ -105,7 +101,7 @@ class GetDigits extends PerclCommand
      */
     public static function openAPIFormats()
     {
-        return self::$openAPIFormats;
+        return self::$openAPIFormats + parent::openAPIFormats();
     }
 
     /**
@@ -115,7 +111,6 @@ class GetDigits extends PerclCommand
      * @var string[]
      */
     protected static $attributeMap = [
-        'command' => 'command',
         'action_url' => 'actionUrl',
         'digit_timeout_ms' => 'digitTimeoutMs',
         'finish_on_key' => 'finishOnKey',
@@ -133,7 +128,6 @@ class GetDigits extends PerclCommand
      * @var string[]
      */
     protected static $setters = [
-        'command' => 'setCommand',
         'action_url' => 'setActionUrl',
         'digit_timeout_ms' => 'setDigitTimeoutMs',
         'finish_on_key' => 'setFinishOnKey',
@@ -151,7 +145,6 @@ class GetDigits extends PerclCommand
      * @var string[]
      */
     protected static $getters = [
-        'command' => 'getCommand',
         'action_url' => 'getActionUrl',
         'digit_timeout_ms' => 'getDigitTimeoutMs',
         'finish_on_key' => 'getFinishOnKey',
@@ -171,7 +164,7 @@ class GetDigits extends PerclCommand
      */
     public static function attributeMap()
     {
-        return self::$attributeMap;
+        return parent::attributeMap() + self::$attributeMap;
     }
 
     /**
@@ -181,7 +174,7 @@ class GetDigits extends PerclCommand
      */
     public static function setters()
     {
-        return self::$setters;
+        return parent::setters() + self::$setters;
     }
 
     /**
@@ -191,7 +184,7 @@ class GetDigits extends PerclCommand
      */
     public static function getters()
     {
-        return self::$getters;
+        return parent::getters() + self::$getters;
     }
 
     /**
@@ -208,12 +201,6 @@ class GetDigits extends PerclCommand
 
     
 
-    /**
-     * Associative array for storing property values
-     *
-     * @var mixed[]
-     */
-    protected $container = [];
 
     /**
      * Constructor
@@ -223,7 +210,8 @@ class GetDigits extends PerclCommand
      */
     public function __construct(array $data = null)
     {
-        $this->container['command'] = isset($data['command']) ? $data['command'] : null;
+        parent::__construct($data);
+
         $this->container['action_url'] = isset($data['action_url']) ? $data['action_url'] : null;
         $this->container['digit_timeout_ms'] = isset($data['digit_timeout_ms']) ? $data['digit_timeout_ms'] : null;
         $this->container['finish_on_key'] = isset($data['finish_on_key']) ? $data['finish_on_key'] : null;
@@ -242,7 +230,7 @@ class GetDigits extends PerclCommand
      */
     public function listInvalidProperties()
     {
-        $invalidProperties = [];
+        $invalidProperties = parent::listInvalidProperties();
 
         if ($this->container['action_url'] === null) {
             $invalidProperties[] = "'action_url' can't be null";
@@ -261,30 +249,6 @@ class GetDigits extends PerclCommand
         return count($this->listInvalidProperties()) === 0;
     }
 
-
-    /**
-     * Gets command
-     *
-     * @return string|null
-     */
-    public function getCommand()
-    {
-        return $this->container['command'];
-    }
-
-    /**
-     * Sets command
-     *
-     * @param string|null $command command
-     *
-     * @return $this
-     */
-    public function setCommand($command)
-    {
-        $this->container['command'] = $command;
-
-        return $this;
-    }
 
     /**
      * Gets action_url

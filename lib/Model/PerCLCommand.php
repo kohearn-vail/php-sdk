@@ -42,7 +42,7 @@ use \OpenAPI\Client\ObjectSerializer;
  */
 class PerclCommand implements ModelInterface, ArrayAccess
 {
-    const DISCRIMINATOR = null;
+    const DISCRIMINATOR = 'command';
 
     /**
       * The original name of the model.
@@ -178,6 +178,9 @@ class PerclCommand implements ModelInterface, ArrayAccess
     public function __construct(array $data = null)
     {
         $this->container['command'] = isset($data['command']) ? $data['command'] : null;
+
+        // Initialize discriminator property with the model name.
+        $this->container['command'] = static::$openAPIModelName;
     }
 
     /**

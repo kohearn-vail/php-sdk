@@ -28,8 +28,6 @@
  */
 
 namespace OpenAPI\Client\Model;
-
-use \ArrayAccess;
 use \OpenAPI\Client\ObjectSerializer;
 
 /**
@@ -58,7 +56,6 @@ class SendDigits extends PerclCommand
       * @var string[]
       */
     protected static $openAPITypes = [
-        'command' => 'string',
         'digits' => 'string',
         'pause_ms' => 'int',
         'privacy_mode' => 'bool'
@@ -70,7 +67,6 @@ class SendDigits extends PerclCommand
       * @var string[]
       */
     protected static $openAPIFormats = [
-        'command' => null,
         'digits' => null,
         'pause_ms' => null,
         'privacy_mode' => null
@@ -83,7 +79,7 @@ class SendDigits extends PerclCommand
      */
     public static function openAPITypes()
     {
-        return self::$openAPITypes;
+        return self::$openAPITypes + parent::openAPITypes();
     }
 
     /**
@@ -93,7 +89,7 @@ class SendDigits extends PerclCommand
      */
     public static function openAPIFormats()
     {
-        return self::$openAPIFormats;
+        return self::$openAPIFormats + parent::openAPIFormats();
     }
 
     /**
@@ -103,7 +99,6 @@ class SendDigits extends PerclCommand
      * @var string[]
      */
     protected static $attributeMap = [
-        'command' => 'command',
         'digits' => 'digits',
         'pause_ms' => 'pauseMs',
         'privacy_mode' => 'privacyMode'
@@ -115,7 +110,6 @@ class SendDigits extends PerclCommand
      * @var string[]
      */
     protected static $setters = [
-        'command' => 'setCommand',
         'digits' => 'setDigits',
         'pause_ms' => 'setPauseMs',
         'privacy_mode' => 'setPrivacyMode'
@@ -127,7 +121,6 @@ class SendDigits extends PerclCommand
      * @var string[]
      */
     protected static $getters = [
-        'command' => 'getCommand',
         'digits' => 'getDigits',
         'pause_ms' => 'getPauseMs',
         'privacy_mode' => 'getPrivacyMode'
@@ -141,7 +134,7 @@ class SendDigits extends PerclCommand
      */
     public static function attributeMap()
     {
-        return self::$attributeMap;
+        return parent::attributeMap() + self::$attributeMap;
     }
 
     /**
@@ -151,7 +144,7 @@ class SendDigits extends PerclCommand
      */
     public static function setters()
     {
-        return self::$setters;
+        return parent::setters() + self::$setters;
     }
 
     /**
@@ -161,7 +154,7 @@ class SendDigits extends PerclCommand
      */
     public static function getters()
     {
-        return self::$getters;
+        return parent::getters() + self::$getters;
     }
 
     /**
@@ -178,12 +171,6 @@ class SendDigits extends PerclCommand
 
     
 
-    /**
-     * Associative array for storing property values
-     *
-     * @var mixed[]
-     */
-    protected $container = [];
 
     /**
      * Constructor
@@ -193,7 +180,8 @@ class SendDigits extends PerclCommand
      */
     public function __construct(array $data = null)
     {
-        $this->container['command'] = isset($data['command']) ? $data['command'] : null;
+        parent::__construct($data);
+
         $this->container['digits'] = isset($data['digits']) ? $data['digits'] : null;
         $this->container['pause_ms'] = isset($data['pause_ms']) ? $data['pause_ms'] : null;
         $this->container['privacy_mode'] = isset($data['privacy_mode']) ? $data['privacy_mode'] : null;
@@ -206,7 +194,7 @@ class SendDigits extends PerclCommand
      */
     public function listInvalidProperties()
     {
-        $invalidProperties = [];
+        $invalidProperties = parent::listInvalidProperties();
 
         if ($this->container['digits'] === null) {
             $invalidProperties[] = "'digits' can't be null";
@@ -225,30 +213,6 @@ class SendDigits extends PerclCommand
         return count($this->listInvalidProperties()) === 0;
     }
 
-
-    /**
-     * Gets command
-     *
-     * @return string|null
-     */
-    public function getCommand()
-    {
-        return $this->container['command'];
-    }
-
-    /**
-     * Sets command
-     *
-     * @param string|null $command command
-     *
-     * @return $this
-     */
-    public function setCommand($command)
-    {
-        $this->container['command'] = $command;
-
-        return $this;
-    }
 
     /**
      * Gets digits
